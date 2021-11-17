@@ -2,7 +2,7 @@
     <div class="my-4">
         <h1 class="text-center">Login into your account</h1>
     </div>
-      <%= form_with(model: @user, url: account_login_path, local: true, class: 'form-horizontal') do |f| %>
+      <%= form_with(model: @user, local: true, url: account_login_path, class: 'form-horizontal') do |f| %>
 
         <div class="form-group row">  
             <%= f.label :email, class: 'col-2' %>
