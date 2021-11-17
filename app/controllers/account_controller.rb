@@ -10,7 +10,7 @@ class AccountController < ApplicationController
       if @check_user
         
         if @check_user.authenticate(params[:user][:hashed_password], @check_user.hashed_password)
-          session[:user] = @check_user.name
+          session[:user_id] = @check_user.id
           flash[:notice] = "Logged in Successfully"
           redirect_to '/'
         else
@@ -51,7 +51,7 @@ class AccountController < ApplicationController
   end
 
   def logout
-    session[:user] = nil
+    session[:user_id] = nil
     flash[:notice] = "You are Logged out"
     redirect_to '/'
   end

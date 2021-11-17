@@ -46,13 +46,14 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
-    <% if session[:user] %>
-      <p class="text-white font-weight-bold my-auto"> Welcome, <%= session[:user] %></p>
+    <% if session[:user_id] %>
+      <p class="text-white font-weight-bold my-auto"> Welcome, <%= session[:user_id] %></p>
       <%= link_to 'Logout', '/account/logout', class: 'btn btn-success mx-2 text-dark font-weight-bold' %>
-      <%= link_to 'Forgot password', '/password/forget_password', class: 'btn btn-danger mx-2 text-dark font-weight-bold' %>
+      <%= link_to 'Reset password', '/password/reset_password', class: 'btn btn-danger mx-2 text-dark font-weight-bold' %>
     <% else %>
-      <%= link_to 'Sign Up', '/account/signup', class: 'btn btn-warning mx-2 text-dark font-weight-bold' %>
-      <%= link_to 'Login', '/account/login', class: 'btn btn-success mx-2 text-dark font-weight-bold' %>
+    <%= link_to 'Login', '/account/login', class: 'btn btn-success mx-2 text-dark font-weight-bold' %>
+    <%= link_to 'Sign Up', '/account/signup', class: 'btn btn-warning mx-2 text-dark font-weight-bold' %>
+    <%= link_to 'Forgot password', '/password/forget_password', class: 'btn btn-danger mx-2 text-dark font-weight-bold' %>
     <% end %>
   </div>
 </nav>

@@ -1,9 +1,8 @@
 class PasswordController < ApplicationController
   def forget_password
-    @user = User.new
 
     if request.post?
-      @check_user = User.find_by_email(params[:user][:email]) 
+      @check_user = User.find_by_email(params[:email]) 
       if @check_user
         new_password = SecureRandom.hex(10)   
         
@@ -26,6 +25,21 @@ class PasswordController < ApplicationController
   end
 
   def reset_password
+    @user = User.find( session[:user_id] )
+
+    if request.post?
+      if @user
+        @user.update(hashed_password: params[:hashed_password])
+        # ActionMailer triggered
+
+        flash[:notice] = "Your password has been reset"
+        session[:user_id] = nil
+        redirect_to "/account/login"
+      else
+        flash[:alert] = "Current Session Id is not Correct!!!"
+        render 'reset_password'
+      end
+    end
   end
 
 end
