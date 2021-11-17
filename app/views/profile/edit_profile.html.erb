@@ -1,0 +1,49 @@
+<div class="mt-4">
+    <h1 class="text-center">Edit your profile</h1>
+</div>
+<div class="container row mt-2">
+<div class="col-7 offset-1">
+    <form class="form-horizontal" action='' method="POST">
+    <fieldset>
+
+        <div class="control-group">
+            <label class="control-label" for="profile_image">Profile image</label>
+            <div class="controls">
+                <input type="file" id="profile_image" onchange="readURL(this);" name="profile_image" placeholder="" >
+            </div>
+        </div>
+    
+
+        <div class="control-group">
+        <label class="control-label"  for="username">Name</label>
+        <div class="controls">
+            <input type="text" id="name" name="username" placeholder="" >
+        </div>
+        </div>
+    
+        <div class="control-group">
+            <label class="control-label" for="mobile">Mobile number</label>
+            <div class="controls">
+                <input type="number" id="mobile" name="mobile" placeholder="" >
+            </div>
+        </div>
+    
+        <div class="control-group">
+            <label class="control-label" for="dob">Date of birth</label>
+            <div class="controls">
+                <input type="date" id="dob" name="dob" placeholder="" >
+            </div>
+        </div>
+    
+        <div class="control-group">
+            <div class="controls mt-4">
+                <button class="btn btn-success ">Update</button>
+            </div>
+        </div>
+    </fieldset>
+    </form>
+</div>
+    <div class="col-4">
+        <img src="#" id="preview" alt="profile image" class="img-thumbnail" width="200" height="200">
+    </div>
+</div>
