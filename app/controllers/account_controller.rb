@@ -51,7 +51,7 @@ class AccountController < ApplicationController
   end
 
   def logout
-    session[:user_id] = nil
+    session[:user] = nil
     flash[:notice] = "You are Logged out"
     redirect_to '/'
   end
