@@ -3,13 +3,23 @@ class User < ApplicationRecord
 
     before_save :encrypt_password
 
-    validates :name, presence: true
-    # validates :dob, presence: true
+    validates :email, presence: true
+
+    def authenticate(pass, hashed_pass)
+        if hashed_pass == encrypt(pass)
+            return true
+        end
+    end
 
     private
 
+    def encrypt(pass)
+        return Digest::SHA1.hexdigest(pass)
+    end 
+
     def encrypt_password
-        self.password = Digest::SHA1.hexdigest(password)
+        return if hashed_password.blank?
+        self.hashed_password = encrypt(hashed_password)
     end
 
 end

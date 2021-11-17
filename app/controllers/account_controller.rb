@@ -1,5 +1,29 @@
 class AccountController < ApplicationController
+  
   def login
+
+    @user = User.new
+    
+    if request.post?
+      @check_user = User.find_by_email(params[:user][:email])
+
+      if @check_user
+        
+        if @check_user.authenticate(params[:user][:hashed_password], @check_user.hashed_password)
+          session[:user] = @check_user.name
+          flash[:notice] = "Logged in Successfully"
+          redirect_to '/'
+        else
+          flash[:alert] = "Invalid password"
+          render 'login'
+        end
+
+      else
+        flash[:alert] = "Email not found"
+        render 'login'
+      end
+    end
+
   end
 
   def signup
@@ -18,6 +42,7 @@ class AccountController < ApplicationController
 
         redirect_to '/'
       else 
+        flash[:alert] = "User not created"
         render 'signup'
       end
 
@@ -28,6 +53,6 @@ class AccountController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :name, :mobile, :dob, :password)
+    params.require(:user).permit(:email, :name, :mobile, :dob, :hashed_password)
   end
 end
