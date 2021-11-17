@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  root 'home#index'
   
   get 'profile/edit_profile'
   
@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   get 'account/login'
   get 'account/signup'
-  
+  post 'account/signup'
+
   resources :employees
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
