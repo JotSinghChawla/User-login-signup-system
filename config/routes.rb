@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   
   get 'password/forget_password'
   get 'password/reset_password'
+  
+  post 'password/reset_password'
+  post 'password/forget_password'
 
   get 'account/login'
   get 'account/signup'
   get 'account/logout'
+
   post 'account/signup'
   post 'account/login'
 
