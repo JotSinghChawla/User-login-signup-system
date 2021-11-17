@@ -1,34 +1,38 @@
 <div class="container">
-    <form class="form-horizontal" action='' method="POST">
-    <fieldset>
-        <div class="mt-4">
-            <h1 class="text-center">Login into your account</h1>
-        </div>
-    
-        <div class="control-group">
-        <!-- E-mail -->
-        <label class="control-label" for="email">E-mail</label>
-        <div class="controls">
-            <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
-        </div>
-        </div>
-    
-        <div class="control-group">
-        <label class="control-label" for="password">Password</label>
-        <div class="controls">
-            <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-        </div>
-        </div>
-    
-    
-        <div class="control-group">
-            <div class="controls mt-4">
-                <button class="btn btn-success ">Sign in</button>
-                <button class="btn btn-danger ">Cancel</button>
+    <div class="my-4">
+        <h1 class="text-center">Login into your account</h1>
+    </div>
+      <%= form_with(model: @user, url: account_login_path,   class: 'form-horizontal') do |f| %>
+
+        
+        <% if @new_user && @new_user.errors.any? %>
+            <div id="error_explanation">
+            <h2><%= pluralize(@new_user.errors.count, "error") %> prohibited this employee from being saved:</h2>
+        
+            <ul>
+            <% @new_user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+            </ul>
             </div>
+        <% end %>
+
+        <div class="form-group row">  
+            <%= f.label :email, class: 'col-2' %>
+            <%= f.email_field :email, class: 'form-control col-3', autofocus: true %>
         </div>
-        <p class="mt-2"> New User? <a href="/account/signup">Sign up</a> 
-                                 | <a href="/password/forget_password">Forgot password</a> </p>
-    </fieldset>
-    </form>
+        
+        <div class="form-group row">  
+            <%= f.label :password, class: 'col-2' %>
+            <%= f.password_field :password, class: 'form-control col-3' %>
+        </div>
+
+        <%= f.submit 'Signin', class: 'btn btn-success' %>
+        <%= link_to 'Cancel', '/', class: 'btn btn-danger text-white' %>
+    
+    <% end %>
+
+    <p class="mt-2"> New User? <a href="/account/signup">Sign up</a> 
+                             | <a href="/password/forget_password">Forgot password</a> </p>
+
 </div>

@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_11_17_005521) do
     t.date "dob"
     t.bigint "mobile"
     t.string "email"
-    t.string "password"
+    t.string "hashed_password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
