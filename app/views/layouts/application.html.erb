@@ -46,8 +46,12 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
-      <%= link_to 'Sign Up', '/account/signup', class: 'btn btn-warning mx-2 text-dark' %>
-      <%= link_to 'Login', '/account/login', class: 'btn btn-success mx-2 text-dark' %>
+    <% if session[:user_id] %>
+      <%= link_to 'Logout', '/account/logout', class: 'btn btn-success mx-2 text-dark font-weight-bold' %>
+    <% else %>
+      <%= link_to 'Sign Up', '/account/signup', class: 'btn btn-warning mx-2 text-dark font-weight-bold' %>
+      <%= link_to 'Login', '/account/login', class: 'btn btn-success mx-2 text-dark font-weight-bold' %>
+    <% end %>
   </div>
 </nav>
 
@@ -57,7 +61,7 @@
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-    
+   
     <%= yield %>
   </body>
 </html>

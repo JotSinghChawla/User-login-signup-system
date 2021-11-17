@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'account/login'
   get 'account/signup'
+  get 'account/logout'
   post 'account/signup'
   post 'account/login'
 
