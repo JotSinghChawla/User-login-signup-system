@@ -5,9 +5,13 @@ class AccountController < ApplicationController
   def signup
     puts "================ STARTING ==================="
 
+    @user = User.new
+
     if request.post?
-      @user = User.new(user_params)
-      if @user.save
+      @new_user = User.new(user_params)
+
+      if @new_user.save
+        
 
         # Action Mailer
         flash[:notice] = "User created successfully. Check your email for confirmation"
@@ -24,6 +28,6 @@ class AccountController < ApplicationController
   private
 
   def user_params
-    params.permit(:email, :name, :mobile, :dob, :password)
+    params.require(:user).permit(:email, :name, :mobile, :dob, :password)
   end
 end

@@ -2,16 +2,16 @@
     <div class="mt-4">
         <h1 class="text-center">Create new account</h1>
     </div>
-
-      <%= form_with( model: @user, local: true, url: account_signup_path, class: 'form-horizontal') do |f| %>
+      <h6> <%= @user.inspect %> </h6>
+      <%= form_with(model: @user, url: account_signup_path,   class: 'form-horizontal') do |f| %>
 
         
-        <% if @user && @user.errors.any? %>
+        <% if @new_user && @new_user.errors.any? %>
             <div id="error_explanation">
-            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this employee from being saved:</h2>
+            <h2><%= pluralize(@new_user.errors.count, "error") %> prohibited this employee from being saved:</h2>
         
             <ul>
-            <% @user.errors.full_messages.each do |message| %>
+            <% @new_user.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
             <% end %>
             </ul>
