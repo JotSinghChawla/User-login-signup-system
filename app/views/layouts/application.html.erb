@@ -45,9 +45,19 @@
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
-    </ul>
+    </ul> 
+     <p class="text-white my-auto ml-auto py-2 d-flex align-items-center">
+    <% if @user && @user.profile_image.attached? %>
+    <img src="<%= url_for(@user.profile_image) %>" class="img-fluid rounded-circle mr-2" width="40" height="40">
+
+    <span class="mr-2">
+      <strong class="pr-2 h4"><%= @user.name.capitalize %></strong>
+    </span>
+    <% end %>
+
+  </p>
+
     <% if session[:user_id] %>
-      <p class="text-white font-weight-bold my-auto"> Welcome, <%= session[:user_id] %></p>
       <%= link_to 'Logout', '/account/logout', class: 'btn btn-success mx-2 text-dark font-weight-bold' %>
       <%= link_to 'Edit Profile', '/profile/edit_profile', class: 'btn btn-warning mx-2 text-dark font-weight-bold' %>
       <%= link_to 'Reset password', '/password/reset_password', class: 'btn btn-danger mx-2 text-dark font-weight-bold' %>
@@ -66,6 +76,10 @@
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
+
+  
+
+        
 
     <%= yield %>
 
