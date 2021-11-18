@@ -9,7 +9,7 @@ class PasswordController < ApplicationController
         # We can also use the following for Random Password generator
         # puts (0..10).map{65.+(rand(25)).chr}.join       # Create a random string of 10 characters
         
-        @check_user.update(hashed_password: 'password')
+        @check_user.update(password: new_password)
 
         puts "New password is #{new_password}"
 
@@ -29,7 +29,7 @@ class PasswordController < ApplicationController
 
     if request.post?
       if @user
-        @user.update(hashed_password: params[:hashed_password])
+        @user.update(password: params[:password])
         # ActionMailer triggered
 
         flash[:notice] = "Your password has been reset"

@@ -1,7 +1,10 @@
 class User < ApplicationRecord
-    puts "=============== User Model ================="
+    
+    attr_accessor :password  #temporary storage, will be removed after login
 
     before_save :encrypt_password
+    
+    before_save {self.email = email.downcase}
 
     validates :email, presence: true
 
@@ -18,8 +21,10 @@ class User < ApplicationRecord
     end 
 
     def encrypt_password
-        return if hashed_password.blank?
-        self.hashed_password = encrypt(hashed_password)
+        puts "=============== encrypting password: #{ hashed_password } ================"
+
+        return if password.blank?
+        self.hashed_password = encrypt(password)
     end
 
 end

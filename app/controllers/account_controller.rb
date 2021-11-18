@@ -1,15 +1,13 @@
 class AccountController < ApplicationController
   
   def login
-
-    @user = User.new
     
     if request.post?
-      @check_user = User.find_by_email(params[:user][:email])
+      @check_user = User.find_by_email(params[:email])
 
       if @check_user
         
-        if @check_user.authenticate(params[:user][:hashed_password], @check_user.hashed_password)
+        if @check_user.authenticate(params[:password], @check_user.hashed_password)
           session[:user_id] = @check_user.id
           flash[:notice] = "Logged in Successfully"
           redirect_to '/'
@@ -59,6 +57,6 @@ class AccountController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :name, :mobile, :dob, :hashed_password)
+    params.require(:user).permit(:email, :name, :mobile, :dob, :hashed_password, :password)
   end
 end

@@ -7,7 +7,7 @@ class ProfileController < ApplicationController
     puts "============= Patch Request =============="
       if @user.update(user_params)
         flash[:notice] = "Profile updated successfully"
-        redirect_to '/account/login'
+        redirect_to '/'
       else
         flash[:alert] = "Error occured! User not Editted"
         render 'edit_profile'
@@ -18,6 +18,6 @@ class ProfileController < ApplicationController
   private 
 
   def user_params
-    params.require(:user).permit(:email, :name, :mobile, :dob, :hashed_password)
+    params.require(:user).permit(:email, :name, :mobile, :dob)
   end
 end
