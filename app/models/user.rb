@@ -1,5 +1,7 @@
 class User < ApplicationRecord
     
+    has_one_attached :profile_image, dependent: :destroy
+
     attr_accessor :password  #temporary storage, will be removed after login
 
     before_save :encrypt_password

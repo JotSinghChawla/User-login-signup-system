@@ -1,7 +1,6 @@
 <div class="container-fluid row">
     <div class="mt-4 text-center col-12">
         <h1 class="text-center">Edit your profile</h1>
-        <%= @user.inspect %>
     </div>
   
     <div class="col-8 offset-1">
@@ -39,6 +38,10 @@
     </div>
     
     <div class="col-3">
-        <img src="#" id="preview" alt="profile image" class="img-thumbnail" width="200" height="200">
+        <% if @user.profile_image.attached? %>
+            <img src="<%= url_for(@user.profile_image) %>" id="preview" alt="profile image" class="img-thumbnail" width="200" height="200">
+        <% else %>
+            <img src="#" id="preview" alt="profile image" class="img-thumbnail" width="200" height="200">
+        <% end %>
     </div>
 </div>
