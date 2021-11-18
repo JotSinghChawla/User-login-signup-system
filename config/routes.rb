@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'home#index'
   
   get 'profile/edit_profile'
+
+  patch 'profile/edit_profile'
   
   get 'password/forget_password'
   get 'password/reset_password'
